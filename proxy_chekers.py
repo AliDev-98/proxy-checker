@@ -26,7 +26,7 @@ class ProxyCheckers:
             except Exception as e:
                 print(f"Error loading proxies file: {e}")
 
-    async def proxy_requests(self):
+    def proxy_requests(self):
         url = "https://google.com"
         proxies = self.get_proxies()
 
@@ -39,7 +39,7 @@ class ProxyCheckers:
             for proxy in proxies:
                 proxies_dict = {"http": proxy, "https": proxy}
                 try:
-                    response = requests.get(url, proxies=proxies_dict, timeout=2) # تخفيض المهلة إلى 2 ثانية
+                    response = requests.get(url, proxies=proxies_dict, timeout=2) 
                     if response.status_code == 200:
                         print(f"Proxy {proxy} is working.")
                         f.write(proxy + "\n")
